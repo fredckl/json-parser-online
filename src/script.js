@@ -25,30 +25,7 @@
 			}
 			,false)
 		}
-		(function()
-			{
-			var popupContainer=document.querySelector('.popup-container'),popup=document.querySelector('.popup');
-			document.querySelector('.about').addEventListener(event_click,function()
-				{
-				popupContainer.classList.add('show')
-			}
-			,false);
-			document.querySelector('.popup-centerer').addEventListener(event_click,function(e)
-				{
-				if(e.target.classList.contains('popup-centerer'))
-					{
-					popupContainer.classList.remove('show');
-					popup.classList.remove('bitcoin')
-				}
-			}
-			,false);
-			document.querySelector('#bitcoin').addEventListener(event_click,function()
-				{
-				popup.classList.add('bitcoin')
-			}
-			)
-		}
-		)();
+
 		(function()
 			{
 			$result.addEventListener(event_click,function(ev)
