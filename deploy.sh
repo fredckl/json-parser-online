@@ -6,7 +6,8 @@ set -e
 export PUBLIC_URL='https://jsonparser.frederickoller.ch'
 
 # navigate into the build output directory
-cd src
+mkdir website
+cp -r src website
 
 # if you are deploying to a custom domain
 # echo 'www.example.com' > CNAME
@@ -22,3 +23,4 @@ git commit -m 'deploy'
 git push -f git@github.com:fredckl/json-parser-online.git main:gh-pages
 
 cd -
+rm -rf website
