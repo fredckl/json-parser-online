@@ -7,7 +7,9 @@ export PUBLIC_URL='https://jsonparser.frederickoller.ch'
 
 # navigate into the build output directory
 mkdir website
-cp -r src website
+cp -r src/* website
+cp -r .git website
+cd website
 
 # if you are deploying to a custom domain
 # echo 'www.example.com' > CNAME
