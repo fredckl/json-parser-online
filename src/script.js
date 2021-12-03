@@ -12,6 +12,57 @@
 		return
 	}
   */
+		function insertUrlParam(key, value) {
+			key = encodeURIComponent(key);
+			value = encodeURIComponent(value);
+
+			// kvp looks like ['key1=value1', 'key2=value2', ...]
+			var kvp = document.location.search.substr(1).split('&');
+			let i=0;
+
+			for(; i<kvp.length; i++){
+				if (kvp[i].startsWith(key + '=')) {
+					let pair = kvp[i].split('=');
+					pair[1] = value;
+					kvp[i] = pair.join('=');
+					break;
+				}
+			}
+
+			if(i >= kvp.length){
+				kvp[kvp.length] = [key,value].join('=');
+			}
+
+			// can return this or...
+			let params = kvp.join('&');
+			let currentUrl = new URL(window.location);
+
+			history.pushState(params, '', currentUrl.origin + '?' + params)
+
+			// reload page with new params
+			//document.location.search = params;
+		}
+		(function() {
+			var key = 'c';
+			var editor = document.querySelector('#editor');
+			var queryString = window.location.search;
+			var urlParams = new URLSearchParams(queryString);
+			document.querySelector('#share-page').addEventListener('click', function() {
+				const value = editor.value;
+				insertUrlParam(key, value);
+				if (navigator.clipboard) {
+					navigator.clipboard.writeText(window.location);
+					toastr.success('URL was copied to <b>clipboard</b>', 'Copied', {positionClass: "toast-bottom-right"});
+				}
+			});
+
+
+			var content = urlParams.get(key);
+			if (content) {
+				editor.value = content
+			}
+
+		})();
 	(function()
 		{
 		var favicon='favicon',online='online',$status=document.getElementById('status'),slash='/',dot='.',parser='parser',semicolumn=':',json='json',$head=document.querySelector('head'),$result=document.getElementById('result'),$editor=document.getElementById('editor'),fr='fr',event_keyup='keyup',event_click='click',root='http'+semicolumn+slash+slash+json+dot+parser+dot+online+dot+fr+slash;
