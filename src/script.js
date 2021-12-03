@@ -37,7 +37,7 @@
 			let params = kvp.join('&');
 			let currentUrl = new URL(window.location);
 
-			history.pushState(params, '', currentUrl.origin + '?' + params)
+			history.pushState(params, '', currentUrl.origin + currentUrl.pathname + '?' + params)
 
 			// reload page with new params
 			//document.location.search = params;
