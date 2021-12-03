@@ -3,10 +3,11 @@
 # abort on errors
 set -e
 
-export PUBLIC_URL='https://jsonparser.frederickoller.ch'
+export PUBLIC_URL='https://fredckl.github.io/json-parser-online/'
 
 # navigate into the build output directory
-mkdir website
+rm -rf website
+mkdir -p website
 cp -r src/* website
 cp -r .git website
 cd website
@@ -17,6 +18,7 @@ cd website
 git init
 git add -A
 git commit -m 'deploy'
+#git remote add origin git@github.com:fredckl/json-parser-online.git
 
 # if you are deploying to https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
@@ -25,4 +27,4 @@ git commit -m 'deploy'
 git push -f git@github.com:fredckl/json-parser-online.git main:gh-pages
 
 cd -
-rm -rf website
+#rm -rf website
